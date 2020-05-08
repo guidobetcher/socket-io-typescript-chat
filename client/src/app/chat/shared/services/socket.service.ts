@@ -13,7 +13,9 @@ export class SocketService {
     private socket;
 
     public initSocket(): void {
-        this.socket = socketIo(SERVER_URL);
+      const idPiso = '';
+      this.socket = socketIo(SERVER_URL);
+      this.joinToTheRoom(idPiso);
     }
 
     public send(message: Message): void {
@@ -31,11 +33,12 @@ export class SocketService {
         });
     }
 
-  joinToTheRoom() {
-    this.socket.emit('joinToTheRoom');
+  joinToTheRoom(id: string) {
+      this.socket.emit('joinToTheRoom', id);
   }
 
   sendToTheRoom(message: Message): void {
-      this.socket.emit('roomMessage', message);
+      const id = 'una id de piso';
+      this.socket.emit('roomMessage', message, id);
   }
 }

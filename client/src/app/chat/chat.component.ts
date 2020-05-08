@@ -177,7 +177,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
 
   joinToTheRoom() {
-    this.socketService.joinToTheRoom();
+    const id = 'una id de piso';
+    this.socketService.joinToTheRoom(id);
     this.user.room = true;
   }
 }
