@@ -1,13 +1,12 @@
-import {User} from './user';
 import {Schema, model} from 'mongoose';
 import DateTimeFormat = Intl.DateTimeFormat;
 
 const MessageSchema: Schema = new Schema({
-    from: {type: String, required: true},
+    chat: {type: String, required: true},
+    from: {type: Schema.Types.ObjectId, ref: 'User', required: true},
     content: {type: String, required: true},
     date: {type: DateTimeFormat, required: false}
     }
 );
-export class Message {
-    constructor(private from: User, private content: string) {}
-}
+
+export default model('Message', MessageSchema);
