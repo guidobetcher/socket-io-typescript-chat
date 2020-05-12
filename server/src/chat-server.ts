@@ -76,7 +76,8 @@ export class ChatServer {
       socket.on("roomMessage", (message: string) => {
         console.log(message);
         const json = JSON.parse(message);
-        this.io.to(json.room).emit("message", json.fromUser + '(' + json.date + '): ' + json.content);
+        console.log(`Estamos en el json ${json}`);
+        this.io.to(json.room).emit("message", message);
       });
     });
   }
